@@ -9,20 +9,17 @@ import 'regenerator-runtime/runtime';
 ///////////////////////////////////////
 
 const controlRecipes = async function () {
-  // get id from hash
   try {
     const id = window.location.hash.slice(1);
 
     if (!id) return;
     recipeView.renderSpinner();
 
-    // loading recipe
     await model.loadRecipe(id);
 
-    // rendering recipe
     recipeView.render(model.state.recipe);
   } catch (err) {
-    alert(err);
+    recipeView.renderError();
   }
 };
 
